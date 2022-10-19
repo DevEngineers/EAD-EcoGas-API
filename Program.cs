@@ -11,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add services to the container.
-builder.Services.Configure<StationDatabaseSettings>(
+builder.Services.Configure<DatabaseSettings>(
     builder.Configuration.GetSection("EcoGasDatabase"));
 
 builder.Services.AddSingleton<StationService>();
