@@ -9,16 +9,16 @@ namespace EcoGasBackend.Services
         private readonly IMongoCollection<Station> _stationsCollection;
 
         public StationService(
-            IOptions<StationDatabaseSettings> stationDatabaseSettings)
+            IOptions<DatabaseSettings> databaseSettings)
         {
             var mongoClient = new MongoClient(
-                stationDatabaseSettings.Value.ConnectionString);
+               databaseSettings.Value.ConnectionString);
 
             var mongoDatabase = mongoClient.GetDatabase(
-                stationDatabaseSettings.Value.DatabaseName);
+               databaseSettings.Value.DatabaseName);
 
             _stationsCollection = mongoDatabase.GetCollection<Station>(
-                stationDatabaseSettings.Value.BooksCollectionName);
+                databaseSettings.Value.StationsCollectionName);
         }
 
         public async Task<List<Station>> GetAsync() =>
