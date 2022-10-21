@@ -21,14 +21,27 @@ namespace EcoGasBackend.Controllers
         [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<Station>> Get(string id)
         {
-            var book = await _stationService.GetAsync(id);
+            var station = await _stationService.GetAsync(id);
 
-            if (book is null)
+            if (station is null)
             {
                 return NotFound();
             }
 
-            return book;
+            return station;
+        }
+
+        [HttpGet("/owner/{id:length(24)}")]
+        public async Task<ActionResult<Station>> GetStationByOwnerID(string id)
+        {
+            var station = await _stationService.GetAsyncByOwnerID(id);
+
+            if (station is null)
+            {
+                return NotFound();
+            }
+
+            return station;
         }
 
         [HttpPost]
@@ -40,28 +53,50 @@ namespace EcoGasBackend.Controllers
         }
 
         [HttpPut("{id:length(24)}")]
-        public async Task<IActionResult> Update(string id, Station updatedStation)
+        public async Task<ActionResult<Station>> Update(string id, Fuel fuel)
         {
-            var book = await _stationService.GetAsync(id);
+            var station = await _stationService.GetAsync(id);
 
-            if (book is null)
+            if (station is null)
             {
                 return NotFound();
             }
 
-            updatedStation.Id = book.Id;
+            switch (fuel.FuelName)
+            {
+                case "Petrol":
+                    station.Fuel[0].Capacity += fuel.Capacity;
+                    station.Fuel[0].ArrivalDate = fuel.ArrivalDate;
+                    station.Fuel[0].ArrivalTime = fuel.ArrivalTime;
+                     break;
+                case "SuperPetrol":
+                    station.Fuel[1].Capacity += fuel.Capacity;
+                    station.Fuel[1].ArrivalDate = fuel.ArrivalDate;
+                    station.Fuel[1].ArrivalTime = fuel.ArrivalTime;
+                    break;
+                case "Diesel":
+                    station.Fuel[2].Capacity += fuel.Capacity;
+                    station.Fuel[2].ArrivalDate = fuel.ArrivalDate;
+                    station.Fuel[2].ArrivalTime = fuel.ArrivalTime;
+                    break;
+                case "SuperDiseel":
+                    station.Fuel[3].Capacity += fuel.Capacity;
+                    station.Fuel[3].ArrivalDate = fuel.ArrivalDate;
+                    station.Fuel[3].ArrivalTime = fuel.ArrivalTime;
+                    break;
+            }
 
-            await _stationService.UpdateAsync(id, updatedStation);
+            await _stationService.UpdateAsync(id, station);
 
-            return NoContent();
+            return station;
         }
 
         [HttpDelete("{id:length(24)}")]
         public async Task<IActionResult> Delete(string id)
         {
-            var book = await _stationService.GetAsync(id);
+            var station = await _stationService.GetAsync(id);
 
-            if (book is null)
+            if (station is null)
             {
                 return NotFound();
             }
