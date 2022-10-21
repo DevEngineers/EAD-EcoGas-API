@@ -79,7 +79,7 @@ namespace EcoGasBackend.Controllers
                     station.Fuel[2].ArrivalDate = fuel.ArrivalDate;
                     station.Fuel[2].ArrivalTime = fuel.ArrivalTime;
                     break;
-                case "SuperDiseel":
+                case "SuperDiesel":
                     station.Fuel[3].Capacity += fuel.Capacity;
                     station.Fuel[3].ArrivalDate = fuel.ArrivalDate;
                     station.Fuel[3].ArrivalTime = fuel.ArrivalTime;
