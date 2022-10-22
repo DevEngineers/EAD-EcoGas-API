@@ -1,6 +1,7 @@
 ﻿using EcoGasBackend.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 
 namespace EcoGasBackend.Services
 {
@@ -26,6 +27,9 @@ namespace EcoGasBackend.Services
 
         public async Task<Station?> GetAsync(string id) =>
             await _stationsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+
+        public async Task<Station?> GetAsyncByOwnerID(string id) =>
+           await _stationsCollection.AsQueryable().Where(x => x.OwnerID == id).FirstOrDefaultAsync();
 
         public async Task CreateAsync(Station station) =>
             await _stationsCollection.InsertOneAsync(station);

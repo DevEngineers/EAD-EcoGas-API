@@ -24,5 +24,7 @@ namespace EcoGasBackend.Models
         public int? SuperPetrolQueue { get; set; }
         [BsonElement("dieselQueue")]
         public int? DieselQueue { get; set; }
+        [BsonElement("superDieselQueue")]
+        public int? SuperDieselQueue { get; set; }
     }
 }
