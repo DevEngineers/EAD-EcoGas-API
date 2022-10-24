@@ -18,10 +18,10 @@ namespace EcoGasBackend.Controllers
         public async Task<List<Station>> Get() =>
             await _stationService.GetAsync();
 
-        [HttpGet("{id:length(24)}")]
-        public async Task<ActionResult<Station>> Get(string id)
+        [HttpGet("{ownerID:length(24)}")]
+        public async Task<ActionResult<Station>> Get(string ownerID)
         {
-            var station = await _stationService.GetAsync(id);
+            var station = await _stationService.GetAsyncByOwnerID(ownerID);
 
             if (station is null)
             {
@@ -31,18 +31,6 @@ namespace EcoGasBackend.Controllers
             return station;
         }
 
-        [HttpGet("/owner/{id:length(24)}")]
-        public async Task<ActionResult<Station>> GetStationByOwnerID(string id)
-        {
-            var station = await _stationService.GetAsyncByOwnerID(id);
-
-            if (station is null)
-            {
-                return NotFound();
-            }
-
-            return station;
-        }
 
         [HttpPost]
         public async Task<IActionResult> Post(Station station)

@@ -28,6 +28,9 @@ namespace EcoGasBackend.Services
         public async Task<User?> GetAsync(string id) =>
             await _usersCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
+        public async Task<User?> GetUserbyUserName(string name) =>
+           await _usersCollection.Find(x => x.UserName == name).FirstOrDefaultAsync();
+
         public async Task CreateAsync(User user) =>
             await _usersCollection.InsertOneAsync(user);
 
