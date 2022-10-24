@@ -15,6 +15,7 @@ builder.Services.Configure<DatabaseSettings>(
     builder.Configuration.GetSection("EcoGasDatabase"));
 
 builder.Services.AddSingleton<StationService>();
+builder.Services.AddSingleton<UserService>();
 
 var app = builder.Build();
 
