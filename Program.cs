@@ -16,6 +16,7 @@ builder.Services.Configure<DatabaseSettings>(
 
 builder.Services.AddSingleton<StationService>();
 builder.Services.AddSingleton<UserService>();
+builder.Services.AddSingleton<QueueService>();
 
 var app = builder.Build();
 
