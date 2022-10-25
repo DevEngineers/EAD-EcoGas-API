@@ -3,6 +3,12 @@ using EcoGasBackend.Models;
 using EcoGasBackend.Services;
 using Microsoft.AspNetCore.Mvc;
 
+/**
+ * This is the controller for station service endpoints
+ * 
+ * Auther: IT19153414 Akeel M.N.M
+ * **/
+
 namespace EcoGasBackend.Controllers
 {
     [ApiController]
@@ -14,10 +20,12 @@ namespace EcoGasBackend.Controllers
         public StationController(StationService stationService) =>
             _stationService = stationService;
 
+        // Get all station details endpoint
         [HttpGet]
         public async Task<List<Station>> Get() =>
             await _stationService.GetAsync();
 
+        // Get station details by id endpoint
         [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<Station>> Get(string id)
         {
@@ -31,6 +39,7 @@ namespace EcoGasBackend.Controllers
             return station;
         }
 
+        // Create station details by location endpoint
         [HttpGet("location/{id}")]
         public async Task<ActionResult<Station>> GetByLocation(string id)
         {
@@ -44,6 +53,7 @@ namespace EcoGasBackend.Controllers
             return station;
         }
 
+        // Create station details by owner id endpoint
         [HttpGet("owner/{id:length(24)}")]
         public async Task<ActionResult<Station>> GetByOwnerID(string id)
         {
@@ -57,7 +67,7 @@ namespace EcoGasBackend.Controllers
             return station;
         }
 
-
+        // Create new station endpoint
         [HttpPost]
         public async Task<IActionResult> Post(Station station)
         {
@@ -66,6 +76,7 @@ namespace EcoGasBackend.Controllers
             return CreatedAtAction(nameof(Get), new { id = station.Id }, station);
         }
 
+        // Update station fuel status endpoint
         [HttpPut("{id:length(24)}")]
         public async Task<ActionResult<Station>> Update(string id, Fuel fuel)
         {
@@ -105,6 +116,7 @@ namespace EcoGasBackend.Controllers
             return station;
         }
 
+        // Increase queue count of fuel in a station endpoint
         [HttpPut("add/{id:length(24)}")]
         public async Task<ActionResult<Station>> IncreaseQueueCount(string id, Fuel fuel)
         {
@@ -136,6 +148,7 @@ namespace EcoGasBackend.Controllers
             return station;
         }
 
+        // Decrease queue count of fuel in a station endpoint
         [HttpPut("remove/{id:length(24)}")]
         public async Task<ActionResult<Station>> DecreaseQueueCount(string id, Fuel fuel)
         {
@@ -167,6 +180,7 @@ namespace EcoGasBackend.Controllers
             return station;
         }
 
+        // Remove station endpoint
         [HttpDelete("{id:length(24)}")]
         public async Task<IActionResult> Delete(string id)
         {
