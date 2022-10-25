@@ -7,5 +7,6 @@
         public string StationsCollectionName { get; set; } = null!;
         public string OwnerCollectionName { get; set; } = null!;
         public string UsersCollectionName { get; set; } = null!;
+        public string QueueCollectionName { get; set; } = null!;
     }
 }
