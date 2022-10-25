@@ -31,6 +31,19 @@ namespace EcoGasBackend.Controllers
             return user;
         }
 
+        [HttpGet("{name}")]
+        public async Task<ActionResult<User>> GetUserByName(string name)
+        {
+            var user = await _userService.GetUserbyUserName(name);
+
+            if (user is null)
+            {
+                return NotFound();
+            }
+
+            return user;
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post(User user)
         {

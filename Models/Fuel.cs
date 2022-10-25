@@ -7,9 +7,7 @@ namespace EcoGasBackend.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string? Id { get; set; }
-        [BsonElement("stationID")]
-        public string? StationID { get; set; }
+        public String? Id { get; set; }
         [BsonElement("fuelName")]
         public string? FuelName { get; set; }
         [BsonElement("capacity")]
@@ -18,5 +16,9 @@ namespace EcoGasBackend.Models
         public string? ArrivalDate { get; set; }
         [BsonElement("arrivalTime")]
         public string? ArrivalTime { get; set; }
+
+        public Fuel(){
+            Id = ObjectId.GenerateNewId().ToString();
+        }
     }
 }

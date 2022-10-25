@@ -31,8 +31,8 @@ namespace EcoGasBackend.Controllers
             return station;
         }
 
-        [HttpGet("/owner/{id:length(24)}")]
-        public async Task<ActionResult<Station>> GetStationByOwnerID(string id)
+        [HttpGet("owner/{id:length(24)}")]
+        public async Task<ActionResult<Station>> GetByOwnerID(string id)
         {
             var station = await _stationService.GetAsyncByOwnerID(id);
 
@@ -43,6 +43,7 @@ namespace EcoGasBackend.Controllers
 
             return station;
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Post(Station station)
