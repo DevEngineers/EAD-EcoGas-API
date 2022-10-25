@@ -31,6 +31,19 @@ namespace EcoGasBackend.Controllers
             return station;
         }
 
+        [HttpGet("location/{id}")]
+        public async Task<ActionResult<Station>> GetByLocation(string id)
+        {
+            var station = await _stationService.GetAsyncByLocation(id);
+
+            if (station is null)
+            {
+                return NotFound();
+            }
+
+            return station;
+        }
+
         [HttpGet("owner/{id:length(24)}")]
         public async Task<ActionResult<Station>> GetByOwnerID(string id)
         {
@@ -84,6 +97,68 @@ namespace EcoGasBackend.Controllers
                     station.Fuel[3].Capacity += fuel.Capacity;
                     station.Fuel[3].ArrivalDate = fuel.ArrivalDate;
                     station.Fuel[3].ArrivalTime = fuel.ArrivalTime;
+                    break;
+            }
+
+            await _stationService.UpdateAsync(id, station);
+
+            return station;
+        }
+
+        [HttpPut("add/{id:length(24)}")]
+        public async Task<ActionResult<Station>> IncreaseQueueCount(string id, Fuel fuel)
+        {
+            var station = await _stationService.GetAsync(id);
+
+            if (station is null)
+            {
+                return NotFound();
+            }
+
+            switch (fuel.FuelName)
+            {
+                case "Petrol":
+                    station.PetrolQueue += 1;
+                    break;
+                case "SuperPetrol":
+                    station.SuperPetrolQueue += 1;
+                    break;
+                case "Diesel":
+                    station.DieselQueue += 1;
+                    break;
+                case "SuperDiesel":
+                    station.SuperPetrolQueue += 1;
+                    break;
+            }
+
+            await _stationService.UpdateAsync(id, station);
+
+            return station;
+        }
+
+        [HttpPut("remove/{id:length(24)}")]
+        public async Task<ActionResult<Station>> DecreaseQueueCount(string id, Fuel fuel)
+        {
+            var station = await _stationService.GetAsync(id);
+
+            if (station is null)
+            {
+                return NotFound();
+            }
+
+            switch (fuel.FuelName)
+            {
+                case "Petrol":
+                    station.PetrolQueue -= 1;
+                    break;
+                case "SuperPetrol":
+                    station.SuperPetrolQueue -= 1;
+                    break;
+                case "Diesel":
+                    station.DieselQueue -= 1;
+                    break;
+                case "SuperDiesel":
+                    station.SuperPetrolQueue -= 1;
                     break;
             }
 

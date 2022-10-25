@@ -28,6 +28,9 @@ namespace EcoGasBackend.Services
         public async Task<Station?> GetAsync(string id) =>
             await _stationsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
+        public async Task<Station?> GetAsyncByLocation(string location) =>
+            await _stationsCollection.Find(x => x.Location == location).FirstOrDefaultAsync();
+
         public async Task<Station?> GetAsyncByOwnerID(string id) =>
            await _stationsCollection.AsQueryable().Where(x => x.OwnerID == id).FirstOrDefaultAsync();
 
