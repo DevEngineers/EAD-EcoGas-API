@@ -12,6 +12,8 @@ namespace EcoGasBackend.Models
         public string? StationID { get; set; }
         [BsonElement("userID")]
         public string? UserID { get; set; }
+        [BsonElement("fuelName")]
+        public string? FuelName { get; set; }
         [BsonElement("arrivalDate")]
         public string? ArrivalDate { get; set; }
         [BsonElement("arrivalTime")]
