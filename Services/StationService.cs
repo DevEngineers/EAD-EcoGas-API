@@ -6,7 +6,7 @@ using MongoDB.Driver.Linq;
 /**
  * This is the service class for station service
  * 
- * Auther: IT19153414 Akeel M.N.M
+ * Author: IT19153414 Akeel M.N.M
  * **/
 
 namespace EcoGasBackend.Services

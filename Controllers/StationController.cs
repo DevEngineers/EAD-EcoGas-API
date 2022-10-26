@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 /**
  * This is the controller for station service endpoints
  * 
- * Auther: IT19153414 Akeel M.N.M
+ * Author: IT19153414 Akeel M.N.M
  * **/
 
 namespace EcoGasBackend.Controllers
