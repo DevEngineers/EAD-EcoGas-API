@@ -3,6 +3,12 @@ using EcoGasBackend.Models;
 using EcoGasBackend.Services;
 using Microsoft.AspNetCore.Mvc;
 
+/**
+ * This is the controller for User service endpoints
+ * 
+ * Author: IT19167442 Nusky M.A.M
+ * **/
+
 namespace EcoGasBackend.Controllers
 {
     [ApiController]
@@ -14,10 +20,12 @@ namespace EcoGasBackend.Controllers
         public UserController(UserService userService) =>
             _userService = userService;
 
+        // Get all the User details endpoint
         [HttpGet]
         public async Task<List<User>> Get() =>
             await _userService.GetAsync();
 
+        // Get User details by id endpoint
         [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<User>> Get(string id)
         {
@@ -31,6 +39,7 @@ namespace EcoGasBackend.Controllers
             return user;
         }
 
+        // Get User details by name endpoint
         [HttpGet("{name}")]
         public async Task<ActionResult<User>> GetUserByName(string name)
         {
@@ -44,6 +53,7 @@ namespace EcoGasBackend.Controllers
             return user;
         }
 
+        // Create new User endpoint
         [HttpPost]
         public async Task<IActionResult> Post(User user)
         {
@@ -52,6 +62,7 @@ namespace EcoGasBackend.Controllers
             return CreatedAtAction(nameof(Get), new { userName = user.UserName }, user);
         }
 
+        // Update User Details endpoint
         [HttpPut("{id:length(24)}")]
         public async Task<ActionResult<User>> Update(string id, User updatedUser)
         {
@@ -70,6 +81,7 @@ namespace EcoGasBackend.Controllers
             return user;
         }
 
+        // Delete User Details endpoint
         [HttpDelete("{id:length(24)}")]
         public async Task<IActionResult> Delete(string id)
         {

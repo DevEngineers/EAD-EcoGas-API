@@ -4,7 +4,7 @@ using MongoDB.Bson.Serialization.Attributes;
 /**
  * This is the Fuel model class
  * 
- * Auther: IT19153414 Akeel M.N.M
+ * Author: IT19153414 Akeel M.N.M
  * **/
 
 namespace EcoGasBackend.Models

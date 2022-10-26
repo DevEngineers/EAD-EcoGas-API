@@ -1,6 +1,13 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
+/**
+ * This is the User model class
+ * 
+ * Author: IT19167442 Nusky M.A.M
+ * **/
+
+
 namespace EcoGasBackend.Models
 {
     public class User
