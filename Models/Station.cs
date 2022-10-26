@@ -1,6 +1,12 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
+/**
+ * This is the Station model class
+ * 
+ * Auther: IT19153414 Akeel M.N.M
+ * **/
+
 namespace EcoGasBackend.Models
 {
     public class Station
