@@ -1,6 +1,12 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 
+/**
+ * This is the controller for station service endpoints
+ * 
+ * Auther: IT19175126 Zumry A.M
+ * **/
+
 namespace EcoGasBackend.Models
 {
     public class Queue
