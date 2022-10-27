@@ -38,8 +38,8 @@ namespace EcoGasBackend.Services
             await _stationsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
         // Get station data by location
-        public async Task<Station?> GetAsyncByLocation(string location) =>
-            await _stationsCollection.Find(x => x.Location == location).FirstOrDefaultAsync();
+        public async Task<List<Station>> GetAsyncByLocation(string location) =>
+            await _stationsCollection.Find(x => x.Location == location).ToListAsync();
 
         // Get station data by owner id
         public async Task<Station?> GetAsyncByOwnerID(string id) =>
