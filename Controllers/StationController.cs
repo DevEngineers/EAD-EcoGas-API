@@ -41,17 +41,9 @@ namespace EcoGasBackend.Controllers
 
         // Create station details by location endpoint
         [HttpGet("location/{id}")]
-        public async Task<ActionResult<Station>> GetByLocation(string id)
-        {
-            var station = await _stationService.GetAsyncByLocation(id);
-
-            if (station is null)
-            {
-                return NotFound();
-            }
-
-            return station;
-        }
+        public async Task<List<Station>> GetByLocation(string id) => await _stationService.GetAsyncByLocation(id);
+         
+       
 
         // Create station details by owner id endpoint
         [HttpGet("owner/{id:length(24)}")]
